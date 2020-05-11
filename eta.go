@@ -15,12 +15,9 @@ type ETA struct {
 	lastCompletedTimestamp int64
 }
 
-func New(total int64, frames ...time.Duration) *ETA {
+func New(total int64) *ETA {
 	if total < 1 {
 		panic("total is less that 1")
-	}
-	if len(frames) == 0 {
-		panic("not time frames provided")
 	}
 
 	clc := &ETA{

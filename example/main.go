@@ -9,10 +9,7 @@ import (
 )
 
 func main() {
-	etac := eta.New(
-		60,
-		time.Second*1,
-	)
+	etac := eta.New(60)
 
 	go func() {
 		for {
