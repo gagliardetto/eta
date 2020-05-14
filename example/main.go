@@ -1,36 +1,43 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gagliardetto/eta"
-	. "github.com/gagliardetto/utils"
 	"github.com/hako/durafmt"
 )
 
 func main() {
-	etac := eta.New(60)
+	totalTasks := int64(60)
+	etac := eta.New(totalTasks)
 
+	// Execute tasks:
 	go func() {
 		for {
-			time.Sleep(time.Second * 2)
-			etac.Done(1)
+			func() {
+				// Mark one task done:
+				defer etac.Done(1)
+				err := runTask()
+				if err != nil {
+					panic(err)
+				}
+			}()
 		}
 	}()
 
-	go func() {
+	// Print stats:
+	for {
+		time.Sleep(time.Second)
+		averagedETA := etac.GetETA()
+		thisETA := durafmt.Parse(averagedETA.Round(time.Second)).String()
 
-		for {
-			time.Sleep(time.Second)
-			averagedETA := etac.GetETA()
-			thisETA := durafmt.Parse(averagedETA.Round(time.Second)).String()
+		percentDone := etac.GetFormattedPercentDone()
 
-			percentDone := GetFormattedPercent(etac.GetDone(), etac.GetTotal())
-
-			Ln(thisETA, percentDone)
-		}
-
-	}()
-
-	time.Sleep(time.Hour)
+		fmt.Println(thisETA, percentDone)
+	}
+}
+func runTask() error {
+	time.Sleep(time.Second * 2)
+	return nil
 }

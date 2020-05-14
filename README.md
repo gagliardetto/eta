@@ -28,8 +28,14 @@ func main() {
 	// Execute tasks:
 	go func() {
 		for {
-			time.Sleep(time.Second * 2)
-			etac.Done(1)
+			func() {
+				// Mark one task done:
+				defer etac.Done(1)
+				err := runTask()
+				if err != nil {
+					panic(err)
+				}
+			}()
 		}
 	}()
 
@@ -44,6 +50,9 @@ func main() {
 		fmt.Println(thisETA, percentDone)
 	}
 }
-
+func runTask() error {
+	time.Sleep(time.Second * 2)
+	return nil
+}
 
 ```
