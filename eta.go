@@ -21,9 +21,6 @@ type ETA struct {
 // the specified total of items to be expected for
 // completion.
 func New(total int64) *ETA {
-	if total < 1 {
-		panic("total is less that 1")
-	}
 
 	clc := &ETA{
 		total: total,
