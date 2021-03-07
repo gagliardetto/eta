@@ -1,0 +1,4 @@
+github.com/gagliardetto/fixedarr v0.0.0-20190606172952-a9bbe0c53229 h1:AbFXcOPzJGU/JNGGO4cYilsJfLs0nAsA/80WqtBjvms=
+github.com/gagliardetto/fixedarr v0.0.0-20190606172952-a9bbe0c53229/go.mod h1:C5sFpewVXDqWbq2zryJjvW5w120W5YfCb+UZ2avQQ8A=
+github.com/hako/durafmt v0.0.0-20200710122514-c0fb7b4da026 h1:BpJ2o0OR5FV7vrkDYfXYVJQeMNWa8RhklZOpW2ITAIQ=
+github.com/hako/durafmt v0.0.0-20200710122514-c0fb7b4da026/go.mod h1:5Scbynm8dF1XAPwIwkGPqzkM/shndPm79Jd1003hTjE=
